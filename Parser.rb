@@ -4,13 +4,13 @@ class Parser
 
 	def initialize(file)
 		@file = File.open(file, "r")
-		@description = parse_section
+		@description = parse_section(true)
 		@delta = parse_section
 	end
 
 	# Reads unary TM description (where '1' is delimiter) from file
 	# and parses the 5-tuple into @description
-	def parse_section
+	def parse_section(bool=false)
 		parsed = []
 		parsed_segment = []
 		segment = ""
@@ -35,7 +35,7 @@ class Parser
 			end
 		end
 
-		if (parsed.empty?)
+		if (parsed.empty? && bool)
 			parsed = parsed_segment
 		else
 			parsed.append(parsed_segment)
