@@ -9,7 +9,7 @@ class Parser
 	end
 
 	# Reads unary TM description (where '1' is delimiter) from file
-	# and parses the 5-tuple into @description
+	# and parses the content accordingly
 	def parse_section(bool=false)
 		parsed = []
 		parsed_segment = []

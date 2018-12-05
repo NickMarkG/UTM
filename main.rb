@@ -3,9 +3,8 @@ require_relative 'Tape'
 require_relative 'UTM'
 
 parser = Parser.new("sample_TM.txt")
-#tape = Tape.new(parser.file)
-utm = UTM.new(parser.description, parser.delta, Tape.new(parser.file))
-puts utm.simulate
+utm = UTM.new()
 
-#tape = Tape.new(parser.file)
-#100.times do (print (tape.nextchar)) end
+# The open file from parser is passed to utm in order to retain the pointer in the file.
+# Probably not the safest or cleanest approach. Noted.
+puts utm.simulate_tm(parser.description, parser.delta, Tape.new(parser.file))

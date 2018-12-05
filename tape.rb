@@ -3,6 +3,7 @@ class Tape
 		@file = file_object
 		@tape = [nextsymbol]
 		@head_position = 0
+		@blank_symbol = nil
 	end
 
 	# Moves tape head right
@@ -32,15 +33,20 @@ class Tape
 		@tape[@head_position] = symbol
 	end
 
+	# A depreciated method that caused a bug in my code... at least now I 
+	# understand turing machines better
 	def eot?
 		@tape[@head_position] == nil
+	end 
+
+	def set_blank(symbol)
+		@blank_symbol = symbol
 	end
 
 	private
 		# Gets the next symbol from @file using "1" as delimiter
 		private def nextsymbol
-			return "000" if @file.eof?
-			#char = @file.readchar
+			return @blank_symbol if @file.eof?
 			symbol = ""
 
 			while (!@file.eof?)
